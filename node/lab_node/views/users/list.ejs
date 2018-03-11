@@ -1,0 +1,31 @@
+<%include ../layout/header.ejs%>
+
+     <h1>list users</h1>
+     <%if(msg !=''){%>
+        <h3><%= msg%></h3>
+    <%}%>
+     <table>
+         <tr>
+             <th>name</th>
+             <th>room</th>
+             <th>img</th>
+             <th>EXT</th>
+             <th>action</th>
+             </tr>
+             <%data.docs.forEach(function(user){%>
+                <tr>
+                    <td><%= user.name%></td>
+                    <td><%= user.RoomNo%></td>
+                    <td><img src="/img/<%= user.img%>" width="100" height="100"></td>
+                    <td><%= user.EXT%></td>
+                    <td><a href="/users/delete/<%=user._id%>">Delete</a></td>
+                    <td><a href="/users/edit/<%=user._id%>">edit </a></td>
+                </tr>
+            <% }) %>
+         </table>
+         <ul>
+         <%for(var i=1;i<=data.pages;i++){%>
+               <li><a href="/users/list/<%=i%>">page<%=i%></a></li>
+             <%}%>
+         </ul>
+ <%include ../layout/footer.ejs%>

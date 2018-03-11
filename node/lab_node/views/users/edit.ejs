@@ -1,0 +1,12 @@
+<%include ../layout/header.ejs%>
+
+  <form method="post" action="" >
+   
+    name : <input type="text" name="name"  value="<%= obj.name%>"></br>
+    email: <input type ="text" name="email"  value="<%= obj.email%>" ><br/>
+    room no:<input type ="text" name="RoomNo" value="<%= obj.RoomNo%>" ><br/>
+    ext: <input type ="text" name="EXT" value="<%= obj.EXT%>" ><br/>
+   
+    <input type="submit" value="save">
+   </form>
+   <%include ../layout/footer.ejs%>

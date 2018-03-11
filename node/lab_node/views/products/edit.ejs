@@ -1,0 +1,9 @@
+<%include ../layout/header.ejs%>
+
+  <form method="post" action="" >
+      product_name :<input type ="text" name="prod_name" value="<%= obj.prod_name%>" ><br/>
+      price : <input type="text" name="price" value="<%= obj.price%>"></br>
+    
+    <input type="submit" value="save">
+   </form>
+   <%include ../layout/footer.ejs%>
