@@ -1,0 +1,228 @@
+<html>
+
+<head>
+
+    <title>
+
+    </title>
+</head>
+<style>
+ 
+
+
+    #quantity{
+        text-align: center;
+        margin-left: 10px;
+      
+        width: 88px;
+        height: 35px;
+
+    }
+   
+    #result2{
+        margin-left: 10px;
+        
+        width: 88px;
+        height: 35px;
+
+    }
+    #calc{
+        height:70%;
+        width:20%;
+        padding:15px; 
+        border-style: solid;
+        border-width: 2px;
+        margin-left: 10%;
+        }
+    #result3{
+        margin-left: 10px;
+        
+        width: 88px;
+        height: 35px;
+
+    }
+   
+    #menu{
+        display:block;
+        width:40%;     
+        border-style: solid;
+        border-width: 2px;
+        margin-left:40%;
+        height:75%;
+        margin-top: -38%; 
+        }
+
+#last_order{
+        height:25%;
+        border-bottom: 2px solid red;
+      
+        padding:15px; 
+        text-align: center;
+        border-spacing: 10px;
+    border-collapse: expression('separate', cellSpacing = '10px');
+
+        
+    }
+
+    #last_order td{
+    text-align: center;
+padding: 12px 12px 12px 12px;
+}
+   
+#myTabl2{
+
+    border-spacing: 10px;
+    border-collapse: expression('separate', cellSpacing = '10px');
+}
+#myTabl2 td{
+    text-align: center;
+padding: 12px 12px 12px 12px;
+}
+
+
+</style>
+
+    <script>
+    var result=0;
+    var itemArray = [];
+    var check;
+    var itemPrice = [0];
+    var proudctName=document.getElementById('proudct').innerHTML ='Shane';
+          
+
+
+
+
+        function sum() {
+            var z=0;
+            
+            var x = parseInt(document.getElementById("result1").value);
+            var y =parseInt( document.getElementById("result2").value);
+
+            //result=x+y+z;
+
+            if(itemArray.length == 0){
+                document.getElementById("tot").innerHTML =0 ;
+            }
+             
+        }
+
+        function delet_proudct() {
+            document.getElementById("myTable").deleteRow(-1);
+           // document.getElementById("Latest_Order").deleteCell(-1);
+           var row = document.getElementById("myRow");
+           row.deleteCell(0);
+           itemArray.pop(check);
+           itemPrice.pop(check);
+           //console.log(itemArray.length);
+           
+             
+                            }
+
+        
+        function addCola()
+        {
+            var cola=5;
+            check=document.getElementById("myTable").insertRow(-1).innerHTML = '<tr><td> <form method="get"  oninput="result1.value = parseInt(quantity.value)*3"><p id="proudct"></p><input type="number" id="quantity" min="0" value="0"><output name="o" id="result1"></output><label>  EGP</label> <img src="img/del.png" width="18" height="18" onclick="delet_proudct()"></td></form></tr>';
+        
+          var row = document.getElementById("myRow");
+          var x = row.insertCell(0);
+         x.innerHTML = "<img src='img/can2.png' width='35' height='55' name='colla' accessKeyLabel='3'>";
+      
+
+         itemArray.push(check);
+         itemPrice.push(cola);
+         console.log(itemPrice);
+        
+
+          
+        }
+        function addcoffe()
+        {
+            var sum = 0
+            var coffe=3;
+        document.getElementById("myTable").insertRow(-1).innerHTML = '<tr><td> <form method="get"  oninput="result2.value = parseInt(quantity.value)*5;"><input type="number" id="quantity" min="0" value="0"><output name="o" id="result2"></output><label>  EGP</label> <img src="img/del.png" width="18" height="18" onclick="delet_proudct()"></td></form></tr>';
+        var row = document.getElementById("myRow");
+        var x = row.insertCell(0);
+        x.innerHTML = "<img src='img/coffe.png' width='55' height='55' name='coffe' accessKeyLabel='5'>";
+        itemArray.push(x);
+        itemPrice.push(coffe);
+        console.log(itemPrice);
+
+       
+       
+         }
+         
+        
+       
+      
+
+
+        </script>
+
+<body>
+ 
+  
+   <div id="calc">
+   <table id="myTable"> 
+          
+</table> 
+
+            Nots:
+            <br>
+                <textarea rows="15" cols="30" >
+                </textarea>
+
+        Room    <select>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+                </select>
+                <br>
+                <br>
+                <button onclick="sum()">Calculate</button> 
+
+                <output name="o" id="tot"></output><label>     EGP</label>
+               <br>
+                <input type="submit" value="Confirm">
+              
+           
+    </div>
+ 
+    <div id="menu">
+        <div id="last_order">
+            <h3>Latest Order</h3>
+
+            <table id="Latest_Order">
+                <tr id="myRow">
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <table id="myTabl2">
+            <tr>
+                <td>
+                <img src="img/can2.png" width="35" height="55" onclick="addCola()" id="myorder" name="Colla">
+                <P>Cola</P>
+                </td>
+
+                <td>
+                <img src="img/coffe.png" width="55" height="55" onclick="addcoffe()"id="myorder" name="Coffe">
+                <P>Coffe</P>
+                </td>
+                <!-- onclick="this.onclick =addcoffe() -->
+         
+
+            </tr>
+        </table>
+        
+
+
+    </div> 
+</body>
+
+</html>

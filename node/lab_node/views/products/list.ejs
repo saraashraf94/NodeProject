@@ -1,0 +1,30 @@
+<%include ../layout/header.ejs%>
+
+     <h1>list posts</h1>
+     <%if(msg !=''){%>
+        <h3><%=msg%></h3>
+    <%}%>
+    <form method="get" action="/posts/search">
+        <input type="text" name="search">
+        <input type="submit" value="search">
+    </form>
+     <table>
+         <tr>
+             <th>prod_name</th>
+             <th>price</th>
+             <th>img</th>
+             <th>action</th>
+             </tr>
+             <%data.forEach(function(prod){%>
+                <tr>
+                    <td><%= prod.prod_name%></td>
+                    <td><%= prod.price%></td>
+                    <td><img src="/img/<%= prod.img%>" width="100" height="100"></td>
+                    <td><a href="/products/delete/<%=prod._id%>">Delete</a></td>
+                    <td><a href="/products/edit/<%=prod._id%>">edit </a></td>
+                    <td><a href="/products/status/<%=prod._id%>">available </a></td>
+
+                </tr>
+            <%}) %>
+         </table>
+ <%include ../layout/footer.ejs%>
