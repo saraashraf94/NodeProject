@@ -34,6 +34,7 @@
         border-width: 2px;
         margin-left: 10%;
         }
+
     #result3{
         margin-left: 10px;
         
@@ -86,73 +87,112 @@ padding: 12px 12px 12px 12px;
     var result=0;
     var itemArray = [];
     var check;
-    var itemPrice = [0];
-    var proudctName=document.getElementById('proudct').innerHTML ='Shane';
-          
+    var summ=0;
+    var itemPrice = [];
+    var ahmedPrice=[];
+    var proudctNameDatabase="Cola ";
+    var pr=5;          
 
 
 
 
         function sum() {
-            var z=0;
+            // var z=0;
             
-            var x = parseInt(document.getElementById("result1").value);
-            var y =parseInt( document.getElementById("result2").value);
+            // var x = parseInt(document.getElementById("result1").value);
+            // var y =parseInt( document.getElementById("result2").value);
 
-            //result=x+y+z;
+            // //result=x+y+z;
 
-            if(itemArray.length == 0){
-                document.getElementById("tot").innerHTML =0 ;
-            }
+            // if(itemArray.length == 0){
+            //     document.getElementById("tot").innerHTML =0 ;
+            // }
+            
+        // for ( var z=0;z<=ahmedPrice.length;z++)
+        // {
+            
+        //    summ+= ahmedPrice[z];
+
+        // }
+        ahmedPrice.forEach(function(elem){
+   
+                summ += elem;
              
+        });
         }
 
-        function delet_proudct() {
-            document.getElementById("myTable").deleteRow(-1);
-           // document.getElementById("Latest_Order").deleteCell(-1);
-           var row = document.getElementById("myRow");
-           row.deleteCell(0);
-           itemArray.pop(check);
-           itemPrice.pop(check);
-           //console.log(itemArray.length);
+        // function delet_proudct() {
+        //     document.getElementById("myTable").deleteRow(-1);
+        //    // document.getElementById("Latest_Order").deleteCell(-1);
+        //    var row = document.getElementById("myRow");
+        //    row.deleteCell(0);
+        //    itemArray.pop(check);
+        //    itemPrice.pop(check);
+        //    console.log(itemArray.length);
            
              
-                            }
+        //                     }
 
         
         function addCola()
         {
-            var cola=5;
-            check=document.getElementById("myTable").insertRow(-1).innerHTML = '<tr><td> <form method="get"  oninput="result1.value = parseInt(quantity.value)*3"><p id="proudct"></p><input type="number" id="quantity" min="0" value="0"><output name="o" id="result1"></output><label>  EGP</label> <img src="img/del.png" width="18" height="18" onclick="delet_proudct()"></td></form></tr>';
+    var price=5;
+
+    var objTo = document.getElementById('calc2');
+  
+    var input = document.createElement("INPUT");
+    input.setAttribute("type", "number");
+    //console.log(input);
+    input.setAttribute("min", "1");
+    input.setAttribute("value", "1");
+
+   EGP = document.createTextNode(" EGP");
+   
+   proudctName = document.createTextNode(proudctNameDatabase);
+   proudctPrice = document.createTextNode(pr);
+
+   var img = document.createElement("IMG");
+   img.setAttribute("src", "img/del.png");
+   img.setAttribute("width", "18");
+   img.setAttribute("height", "18");
+
+  
+
+    objTo.appendChild(proudctName);
+    objTo.appendChild(input);
+    objTo.appendChild(proudctPrice);
+    ahmedPrice.push(pr);
+    objTo.appendChild(EGP);
+    objTo.appendChild(img);
+  //  console.log(itemPrice);
+    img.addEventListener("click", function(){
+    ahmedPrice.pop(pr);
+    summ=0;    
+    img.parentNode.removeChild(img);    
+    EGP.parentNode.removeChild(EGP);
+    proudctName.parentNode.removeChild(proudctName);
+    proudctPrice.parentNode.removeChild(proudctPrice);
+    input.parentNode.removeChild(input);
+    
+// console.log(itemPrice[1].data);
+
+});
+
+   
         
-          var row = document.getElementById("myRow");
-          var x = row.insertCell(0);
-         x.innerHTML = "<img src='img/can2.png' width='35' height='55' name='colla' accessKeyLabel='3'>";
+          var menuImage = row.insertCell(0);
+          menuImage.innerHTML = "<img src='img/can2.png' width='35' height='55' name='colla' accessKeyLabel='3'>";
       
 
-         itemArray.push(check);
-         itemPrice.push(cola);
-         console.log(itemPrice);
+         //itemArray.push(check);
+        // itemPrice.push(cola);
+
+         //console.log(itemPrice);
         
 
           
         }
-        function addcoffe()
-        {
-            var sum = 0
-            var coffe=3;
-        document.getElementById("myTable").insertRow(-1).innerHTML = '<tr><td> <form method="get"  oninput="result2.value = parseInt(quantity.value)*5;"><input type="number" id="quantity" min="0" value="0"><output name="o" id="result2"></output><label>  EGP</label> <img src="img/del.png" width="18" height="18" onclick="delet_proudct()"></td></form></tr>';
-        var row = document.getElementById("myRow");
-        var x = row.insertCell(0);
-        x.innerHTML = "<img src='img/coffe.png' width='55' height='55' name='coffe' accessKeyLabel='5'>";
-        itemArray.push(x);
-        itemPrice.push(coffe);
-        console.log(itemPrice);
-
        
-       
-         }
-         
         
        
       
@@ -164,9 +204,9 @@ padding: 12px 12px 12px 12px;
  
   
    <div id="calc">
-   <table id="myTable"> 
-          
-</table> 
+    <table id="calc2">
+
+    </table>
 
             Nots:
             <br>
