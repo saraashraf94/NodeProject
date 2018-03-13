@@ -15,16 +15,30 @@
              <th>img</th>
              <th>action</th>
              </tr>
-             <%data.forEach(function(prod){%>
+             <%data.docs.forEach(function(prod){%>
                 <tr>
                     <td><%= prod.prod_name%></td>
                     <td><%= prod.price%></td>
                     <td><img src="/img/<%= prod.img%>" width="100" height="100"></td>
                     <td><a href="/products/delete/<%=prod._id%>">Delete</a></td>
                     <td><a href="/products/edit/<%=prod._id%>">edit </a></td>
-                    <td><a href="/products/status/<%=prod._id%>">available </a></td>
-
+                    <td><a href="/products/status/<%=prod.id%>">
+                        <%if (prod.status=="unavailable" ){%>
+                        <%= prod.status%> 
+                        <% } %>
+                        <%if (prod.status =="available"){%>
+                            <p>available</p>
+                            <% } %>
+                        
+                             
+                        </a></td>
                 </tr>
-            <%}) %>
-         </table>
+                <%}) %>
+            </table>
+                <ul>
+                    <%for(var i=1;i<=data.pages;i++){%>
+                          <li><a href="/products/list/<%=i%>">page<%=i%></a></li>
+                        <%}%>
+                    </ul>
+          
  <%include ../layout/footer.ejs%>

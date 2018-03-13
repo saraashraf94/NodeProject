@@ -1,12 +1,12 @@
 <%include ../layout/header.ejs%>
 
   <form method="post" action="#" enctype="multipart/form-data">
-    product_name :<input type ="text" name="prod_name"  ><br/>
+    product_name :<input type ="text" name="prod_name"  > <a href="/products/category">add category</a><br/>
    price : <input type="text" name="price"></br>
    img : <input type="file"name ='avatar'></br>
 <select name='category'>
   <%categories.forEach(function(category){%>
-  <option value="<%= category._id %>"><%= category.name %></option>
+  <option value="<%= category._id %>"><%= category.cat_name %></option>
   <%})%>
   </select>
 </br>

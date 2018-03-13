@@ -75,9 +75,17 @@ router.get('/edit/:id',function(req,resp){
 })
 router.post('/edit/:id',[bodyParserMid],function(req,resp){
     console.log(req.params.id);
-    mongoose.model('users').update({_id:parseInt(req.params.id)},{
+    mongoose.model('users').update({_id:req.params.id},{
 
-    "$set":{name:req.body.name,RoomNo:req.body.RoomNo,email:req.body.email,EXT:req.body.EXT}
+        "$set":{
+          
+                name:req.body.name,
+                email:req.body.email,
+                RoomNo:req.body.RoomNo,
+                EXT:req.body.EXT
+                    
+        }
+   
     },function(err,doc){
         
         resp.redirect('/users/list');
