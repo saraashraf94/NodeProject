@@ -9,8 +9,8 @@ var mongoose=require('mongoose');
 var uploadMid=multer({
     dest:"./public/img" 
   })
-
-
+var ProductModel=mongoose.model('products');
+var UserModel=mongoose.model('users');
 router.get('/add',function(req,resp){
     mongoose.model('categories').find({},function(err,categories){
         resp.render('products/add',{categories:categories});
@@ -18,7 +18,7 @@ router.get('/add',function(req,resp){
     
 });
 
-router.get('/status/:id',function(req,resp){
+/*router.get('/status/:id',function(req,resp){
     
     //resp.send("done");
     mongoose.model('products').find({_id:req.param.id},(function(result,err)
@@ -49,24 +49,43 @@ router.get('/status/:id',function(req,resp){
     )
 });
 
+*/
 router.post('/add',uploadMid.single('avatar'),function(req,resp){
     fs.renameSync(req.file.path,req.file.destination+"/"+req.file.originalname);
-    var PostModel=mongoose.model('products');
-    console.log(PostModel);
-    var post=new PostModel({
-     prod_name:req.body.prod_name,
-     price:req.body.price,
-     img:req.file.originalname,
-     category:req.body.category   
-   });
-   console.log(post);
-   post.save(function(err,doc){
+    //resp.send(req.file);
+    console.log(req.file);
+    var product=new ProductModel({
+        prod_name:req.body.prod_name,
+        price:req.body.price,
+        img:req.file.originalname,
+        category:req.body.category 
+        
+      });
+      product.save(function(err,doc){
+          resp.send('done');
+       //resp.json(doc ); 
+   
+      })
+ });
+// router.post('/add',uploadMid.single('avatar'),function(req,resp){
+//     //fs.renameSync(req.file.path,req.file.destination+"/"+req.file.originalname);
+//     var PostModel=mongoose.model('products');
+//     console.log(req.body);
+//     //resp.send(req.file.filename);
+//     var post=new PostModel({
+//      prod_name:req.body.prod_name,
+//      price:req.body.price,
+//      img:req.file.filename,
+//      category:req.body.category   
+//    });
+  
+//    post.save(function(err,doc){
 
-       resp.send('done');
- // resp.json(req.file ); 
+//        resp.send('done');
+//  // resp.json(req.file ); 
 
-   })
-});
+//    })
+// });
 router.get('/list/:page?',function(req,resp){
     var page=1;
     if(req.params.page)

@@ -1,9 +1,11 @@
 <%include ../layout/header.ejs%>
 
-  <form method="post" action="#" enctype="multipart/form-data">
-    product_name :<input type ="text" name="prod_name"  > <a href="/products/category">add category</a><br/>
+  <form method="post" action="/products/add " enctype="multipart/form-data">
+    product_name :<input type ="text" name="prod_name"  >
+     <a href="/products/category">add category</a><br/>
    price : <input type="text" name="price"></br>
-   img : <input type="file"name ='avatar'></br>
+   img : <input type="file" name ='avatar'></br>
+
 <select name='category'>
   <%categories.forEach(function(category){%>
   <option value="<%= category._id %>"><%= category.cat_name %></option>
@@ -13,3 +15,5 @@
     <input type="submit" value="save">
    </form>
    <%include ../layout/footer.ejs%>
+
+  

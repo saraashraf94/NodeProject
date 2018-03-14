@@ -9,7 +9,7 @@ var products=new Schema({
   img:String,
   status:String,
   category:{
-    type:Number,
+    type:mongoose.Schema.Types.ObjectId,
     ref:"categories"
   }
   
