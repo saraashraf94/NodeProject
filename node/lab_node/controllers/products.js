@@ -18,74 +18,7 @@ router.get('/add',function(req,resp){
     
 });
 
-/*router.get('/status/:id',function(req,resp){
-    
-    //resp.send("done");
-    mongoose.model('products').find({_id:req.param.id},(function(result,err)
-        {                 
-         if(!err){
-                 resp.render('products/list',{data:result,msg:req.flash('msg')});
-             //  resp.json(result);
-             }
-             else{
-            if( mongoose.model('products').status=="available"){
-                mongoose.model('products').update({_id:req.params.id},{
 
-                    "$set":{status:"unavailable" }
-                    },function(err,doc){
-                        resp.render('product_updated');
-                    });
-            }
-            else{
-                mongoose.model('products').update({_id:req.params.id},{
-
-                    "$set":{status:"available" }
-                    },function(err,doc){
-                        resp.render('product_updated');
-                    });
-               }
-             } 
-        })
-    )
-});
-
-*/
-router.post('/add',uploadMid.single('avatar'),function(req,resp){
-    fs.renameSync(req.file.path,req.file.destination+"/"+req.file.originalname);
-    //resp.send(req.file);
-    console.log(req.file);
-    var product=new ProductModel({
-        prod_name:req.body.prod_name,
-        price:req.body.price,
-        img:req.file.originalname,
-        category:req.body.category 
-        
-      });
-      product.save(function(err,doc){
-          resp.send('done');
-       //resp.json(doc ); 
-   
-      })
- });
-// router.post('/add',uploadMid.single('avatar'),function(req,resp){
-//     //fs.renameSync(req.file.path,req.file.destination+"/"+req.file.originalname);
-//     var PostModel=mongoose.model('products');
-//     console.log(req.body);
-//     //resp.send(req.file.filename);
-//     var post=new PostModel({
-//      prod_name:req.body.prod_name,
-//      price:req.body.price,
-//      img:req.file.filename,
-//      category:req.body.category   
-//    });
-  
-//    post.save(function(err,doc){
-
-//        resp.send('done');
-//  // resp.json(req.file ); 
-
-//    })
-// });
 router.get('/list/:page?',function(req,resp){
     var page=1;
     if(req.params.page)
@@ -104,16 +37,29 @@ router.get('/list/:page?',function(req,resp){
     
 });
 
+router.get('/orderpage',function(req,resp){
+    mongoose.model('products').find({},  function(err,result ){
+        if(err){
+            console.log(err);
+        }else{
+            resp.render('products/orderpage', {
+                data: result
+            });
+        }
+    })
+    
+});
+
+
 router.get('/search',function(req,resp){
-    //resp.json(req.query.search);
-    mongoose.model('products').find({title:{"$regex":req.query.search,"$options":"i"}})
+    mongoose.model('products').find({prod_name:{"$regex":req.query.search,"$options":"i"}})
       .sort({_id:-1})
       .populate ({path:"user",select:"name"})
        .then(function(result,err)
        {                 
         if(!err){
                 resp.render('products/list',{data:result,msg:req.flash('msg')});
-            //  resp.json(result);
+          
             }
             else{
             resp.render(err);
@@ -123,27 +69,28 @@ router.get('/search',function(req,resp){
 
 
 router.get('/delete/:id',function(req,resp){
-    mongoose.model('products').remove({_id:req.params.id},function(err,result){
-        if(!err){
-            req.flash("msg","Done")
-            resp.redirect('/products/list');
-
-
-        }
+    var productModel=mongoose.model('products');
+    var product = new productModel({
+        _id:req.params.id
+    });
+    product.remove(function(err,result){
+        req.flash("msg","Done")
+        resp.redirect('/products/list');
     })
+    
+
 })
 router.get('/category',function(req,resp){
     resp.render('products/category')
    })
  router.post('/category',[bodyParserMid],function(req,resp){
   var Postcat=mongoose.model('categories');
-  //console(req.body.category_name);
    var post=new Postcat({ 
     cat_name:req.body.category_name
    });
      post.save(function(err,doc){
-       resp.send('done');
-    //resp.json(doc ); 
+        resp.render('auth/links');
+  
 
    })
 

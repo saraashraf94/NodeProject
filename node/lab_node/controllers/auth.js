@@ -11,6 +11,12 @@ router.get('/login',function(req,resp){
   }) ;
 
 });
+router.get('/admin',function(req,resp){
+  resp.render('auth/admin',{
+    msg: req.flash("msg")
+  }) ;
+});
+
 
 router.post('/login',bodyParserMid,function(req,resp){
   var username=req.body.username;
@@ -24,30 +30,41 @@ router.post('/login',bodyParserMid,function(req,resp){
     }
     if(user)
     {  
-      if( password=="123456"){
-
-        req.session.username="admin";
-        req.session.password="admin";
+      if(password==password)
+      {
+        req.session.username=username;
+        req.session.password=password;
     
-        resp.redirect('/products/list/');
+        resp.redirect('/products/orderpage/');
         console.log( req.session.username);
-      }else{
+      }
+     else{
         req.flash("msg",'invalide username');
        resp.redirect('/auth/login');
-      }
-    
-        return resp.status(200).send(); 
+      }   
+           return resp.status(200).send(); 
     }
    
   })
-  // if(username=="admin" && password=="admin"){
-  //   req.session.username="marwa";
-  //   req.session.password="123456";
+});
+  router.post('/admin',bodyParserMid,function(req,resp){
+    var username=req.body.username;
+  var password=req.body.password;
+    if(username=="AdminCafee" && password=="Admin"){
+        req.session.username="AdminCafee";
+         req.session.password="Admin";
+          resp.redirect('/products/list/');
+          console.log( req.session.username);
+          }
+       else{
+          req.flash("msg",'invalide username');
+         resp.redirect('/auth/admin');
+        } 
+          return resp.status(200).send(); 
+      });
+     
 
-  //   resp.redirect('/products/list/');
-  //   console.log( req.session.username);
   
-});  
 
 router.get('/register',function(req,resp){
   resp.render('auth/register') ;

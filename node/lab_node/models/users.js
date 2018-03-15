@@ -9,7 +9,7 @@ var users=new Schema({
   RoomNo:Number,
   EXT:Number,
   img:String,
-  is_admin:Boolean,
+  is_admin: String,
   created_at:{
     type:Date,
     default:Date.now
@@ -27,3 +27,5 @@ var user_id=doc._id;
 });*/
 //register model 
 mongoose.model("users",users);
+
+

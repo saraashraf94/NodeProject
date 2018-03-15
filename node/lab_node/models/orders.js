@@ -2,13 +2,13 @@
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 var orders=new Schema({
- 
+
+
   price:Number,
-  status:Number,
+  status:String,
   notes:String,
   time:{
     type:Date,
-    default:Date.now
   },
   user:{
     type:Number,
@@ -17,9 +17,11 @@ var orders=new Schema({
   created_at:{
     type:Date,
     default:Date.now
-  }
+  },
+  action:String,
+  img:String
 
-     
+
 
 
 });
@@ -28,5 +30,5 @@ var orders=new Schema({
 
 
 
-//register model 
+//register model
 mongoose.model("orders",orders);

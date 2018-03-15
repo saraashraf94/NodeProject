@@ -1,0 +1,337 @@
+<html>
+<head>
+
+    <title>
+
+    </title>
+</head>
+<style>
+ 
+ body{
+     
+  background-image: url("srsr.jpg");
+   /* background-repeat: no-repeat;  */
+  background-size: 1350px 700px;
+  
+
+
+ }
+    #quantity{
+        text-align: center;
+        margin-left: 10px;
+      
+        width: 88px;
+        height: 35px;
+
+    }
+   
+    #result2{
+        margin-left: 10px;
+        
+        width: 88px;
+        height: 35px;
+
+    }
+    #calc{
+        height:70.5%;
+        width:25%;
+        padding:15px; 
+        margin-left: 24%;
+   
+        color:rgb(46, 8, 8);
+        margin-top: -22%;
+        background-color: rgba(197, 126, 126, 0.705);
+        
+        border-color: rgb(134, 29, 29);
+        border-width:  4px;
+        border-style: groove;
+        overflow: scroll;
+        
+       
+        }
+        #menu{
+        display:block;
+        width:28%;    
+        background-color: rgba(197, 126, 126, 0.705);
+   
+        border-color: rgb(134, 29, 29);
+        border-width:  4px;
+        border-style: groove;
+        overflow: scroll; 
+        color:rgb(46, 8, 8);
+        margin-left:55%;
+        height:75%;
+        margin-top: -38.5%;
+       
+        }
+
+    #result3{
+        margin-left: 10px;
+        
+        width: 88px;
+        height: 35px;
+
+    }
+   
+   
+
+#last_order{
+        height:25%;
+        border-bottom: 2px solid  rgb(87, 60, 43);
+        width: 70%;
+        margin-left:38px; 
+        padding:15px; 
+        text-align: center;
+        border-spacing: 10px;
+    border-collapse: expression('separate', cellSpacing = '10px');
+
+        
+    }
+
+    #last_order td{
+       
+    text-align: center;
+padding: 12px 12px 12px 12px;
+}
+   
+#myTabl2{
+    margin-left: 10px;
+    border-spacing: 10px;
+    border-collapse: expression('separate', cellSpacing = '10px');
+}
+#myTabl2 td{
+    text-align: center;
+padding: 12px 12px 12px 12px;
+}
+h3{
+    margin-top: 1px;
+}
+
+#tbl td {
+    text-align: center;
+padding: 12px 12px 12px 12px;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+   height: 55px;
+    background-color: rgb(155, 35, 20);
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: rgba(201, 130, 130, 0.671);
+}
+
+
+
+#logo{
+    border-radius: 45px;
+    display: block;
+    margin-top: 15%;
+    margin-left: 5%;
+}
+
+#user{
+    margin-top: -10px;
+}
+</style>
+     <script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+    var summ=0;
+    var calc=0;
+    var ProudctPriseArray=[];
+    var proudctNameDatabase="";
+    var priceProdctDataBase; 
+    var prbtn;
+    //fromDataBase
+    // data.forEach(function(prod){
+    //  proudctNameDatabase=prod.prod_name;
+    //  priceProdctDataBase=prod.price
+    //   });
+
+    
+   /////////
+    var pr;   
+         
+
+ 
+       
+$(function(){
+    $(".products").one('click',function(){
+       
+        //console.log(this.name);
+        $("#calc2").append("<label class ='components'>"+this.name+"</label>");
+       // $("#last_order").append("<label class ='comp'>"+this.name+"</label>");
+        $("#calc2").append("<input type='text' id='C"+this.name+"' name='"+this.name+"' value='1'/>");
+        $("#calc2").append("<button class='plus' name='"+this.name+"'>+</button>");
+        $("#calc2").append("<button class='mins' name='"+this.name+"'>-</button>");
+        $("#calc2").append(" EGP ");
+        $("#calc2").append("<label title='"+this.title+"' id='P"+this.name+"'>"+this.title+"</label><br/>");
+        //$("#myRow").append(document.getElementById("myorder"));
+       
+       
+       
+        var total=parseInt($("#toot").text().split(' ')[2]);
+        total+=parseInt(this.title);
+        $("#toot").text("total EGP "+total);
+    });
+    $('#calc2').on('click','.plus',function(){
+        var text=parseInt($("#C"+this.name).val())
+        price=parseInt($("#P"+this.name)[0].title)
+        $("#C"+this.name).val(++text);
+        text2=parseInt($("#P"+this.name).text());
+        text2+=price;
+        $("#P"+this.name).text(text2);
+        var total=parseInt($("#toot").text().split(' ')[2]);
+        total+=price;
+        $("#toot").text("total EGP "+total);
+    });
+    $('#calc2').on('click','.mins',function(){
+        if(parseInt($("#C"+this.name).val())>1){
+        var text=parseInt($("#C"+this.name).val())
+        price=parseInt($("#P"+this.name)[0].title)
+        $("#C"+this.name).val(--text);
+        text2=parseInt($("#P"+this.name).text());
+        text2-=price;
+        $("#P"+this.name).text(text2);
+        var total=parseInt($("#toot").text().split(' ')[2]);
+        total-=price;
+        $("#toot").text("total EGP "+total);
+    }
+
+   
+
+
+    });
+
+    $('#Confirm').on('click',function(){
+       var order=('.component').this.title.val();
+       var note=('#note').val();
+       var room=('.room').val();
+       var total=('#toot').val();
+
+    })
+})
+  
+       
+function confirm(){
+
+    alert("Done !");
+}
+       
+/*function sum() {
+ $( "span" ).each(function( index ) {
+
+$( "label" ).each(function() {
+if(parseInt($(this).text()))
+  calc+=parseInt($(this).text());
+});
+    //  calc+=parseInt($( this ).text() );
+    //   });console.log(calc) 
+    
+    calc+=parseInt($(this).text());
+     var tot=document.getElementById("tot");
+   tot.innerText= calc ;                      
+    })
+}*/
+      
+        </script>
+
+<body>
+ <div id="navbar">
+
+<ul>
+        
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li style="float:right"><a class="active" href="#about"><img src="user.png" width="45px" height="45" id="user"></a></li>
+        <li style="float:right"><a class="active" href="#about">User Name</li>
+      </ul>
+      
+
+ </div>
+<img src="mee2.jpg" id="logo" width="182px" height="182px">
+
+   <div id="calc">
+
+    <div id="calc2"></div>
+
+    <table id="tbl">
+<tr>
+          <td>  Nots:</td>
+          <td>  <textarea id="note" rows="5" cols="20" >
+                </textarea></td>
+</tr>
+       
+          <tr>  <td>Room :</td> 
+            
+            <td><select class="room" >
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+                </select></td>
+            </tr>
+             <tr> 
+                <td> <div id="tot"></div><label id="toot">total EGP 0</label></td> 
+            </tr>
+            <tr>
+                 
+             <td>   <input type="submit" value="Confirm" id="Confirm" onclick="confirm()"></td>
+            </tr>
+            </table>
+           
+    </div>
+ 
+    <div id="menu">
+        <div id="last_order">
+            <h3>Latest Order</h3>
+
+            <table id="Latest_Order">
+                <tr id="myRow">
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <table id="myTabl2">
+            <%data.forEach(function(prod){%>
+            <tr>
+                    <td>
+                      <button class="products" name="<%=prod.prod_name%>" title="<%=prod.price%>" >
+                    <img src="/img/<%= prod.img%>" width="35" height="55"  name="<%= prod.prod_name%>" id="myorder">
+                    <P ><%= prod.prod_name%> </P>
+                    <p> <%= prod.price%> </P>  
+                        </button> 
+                    </td>
+                    <%}) %>
+
+            </tr>
+        </table>
+        
+
+
+    </div> 
+</body>
+
+</html>

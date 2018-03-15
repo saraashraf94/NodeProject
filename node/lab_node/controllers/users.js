@@ -29,7 +29,8 @@ router.post('/add',uploadMid.single('avatar'),function(req,resp){
    });
    post.save(function(err,doc){
    
-       resp.send('done');
+    resp.render('auth/links');
+
     //resp.json(doc ); 
 
    })
