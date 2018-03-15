@@ -1,0 +1,76 @@
+<%include ../layout/header.ejs%>
+
+<style>
+  #adduser{
+
+    margin-left: 35%;
+    border:5px groove rgb(141, 111, 54);
+    width: 300px;
+    margin-top: 4%;
+
+  }
+  h1{
+    margin-left: 15%;
+  }
+
+  #cont{
+            background-color: rgba(185, 143, 94, 0.473);
+            width: 70%;
+            margin-left: 15%;
+            height: 100%;
+        }
+</style>
+<div id="cont">
+<h1 style="color:rgb(94, 70, 26)">Add User</h1>
+<div id="adduser">
+  
+<table>
+  <form method="post" action="#" enctype="multipart/form-data">
+   <tr>
+     <td>
+       <br>
+   Name :<br>
+    <input type="text" name="name"></td>
+  </tr>
+  <tr>
+    <td>
+    Email:
+    <br>
+     <input type ="text" name="email" ></td>
+    </tr>
+    <tr>
+      <td>
+    Password: <br><input type ="password" name="password" >
+  </td>
+  </tr>
+<tr>
+  <td>
+    Room Number:
+    <br>
+    <input type ="text" name="RoomNo" >
+  </td>
+  </tr>
+  <tr>
+      <td>
+    Ext: <br>
+    <input type ="text" name="EXT" >
+    </td>
+    </tr>
+    <tr>
+        <td>
+
+    img :
+    <br>
+     <input type="file"name ='avatar'></br>
+</td>
+</tr>  
+<tr>
+    <td>
+    <input type="submit" value="save">
+    </td>
+    </tr>
+   </form>
+  </table>
+</div>
+</div>
+   <%include ../layout/footer.ejs%>

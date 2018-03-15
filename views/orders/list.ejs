@@ -1,0 +1,62 @@
+<%include ../layout/header.ejs%>
+
+
+<style>
+        table,td,th{
+        
+           
+        border: 1px solid rgb(80, 55, 38);
+        color: rgb(80, 55, 38);
+        }
+        
+        #listo{
+        
+        margin-left: 15%;
+        }
+        h1{
+            margin-left: 15%;
+        }
+        
+        #cont{
+            background-color: rgba(185, 143, 94, 0.473);
+            width: 70%;
+            margin-left: 15%;
+            height: 100%;
+        }
+        </style>
+<div id="cont">
+     <h1 style="color:rgb(63, 52, 22)">Orders </h1>
+     
+    <div id="listo">
+     <table border=1>
+         <tr>
+             <th>Order Date</th>
+             <th>Name</th>
+             <th>Room</th>
+             <th>Ext</th>
+             <th>Action</th>
+             </tr>
+             <%orders.forEach(function(order){%>
+                <tr>
+                    <td><%= order.time%></td>
+                    <td><%= order.user%></td>
+                    <td><%= order.room%></td>
+                    <td><%= order.ext%></td>
+                    <td><%= order.action%></td>
+ 
+                </tr>
+                <tr colspan=5>
+
+
+                
+                
+                    <td>
+                        <img src="/img/<%= order.img%>" width="100" height="100">
+                    </td>
+                </tr>
+                <%}) %>
+            </table>
+        </div>
+        </div>
+          
+ <%include ../layout/footer.ejs%>

@@ -1,0 +1,64 @@
+
+
+<%include ../layout/header.ejs%>
+<style>
+h1{
+ 
+  margin-left: 15%;
+ 
+}
+
+#cont{
+            background-color: rgba(185, 143, 94, 0.473);
+            width: 70%;
+            margin-left: 15%;
+            height: 100%;
+        }
+</style>
+<div id="cont">
+<h1  class="addp" style="color:rgb(71, 50, 22)">Add Product</h1>
+<div id="addpro">
+  <form method="post" action="/products/add " enctype="multipart/form-data">
+    <table>
+      <tr>
+        <td>product_name :</td>
+        <td>
+           <input type ="text" name="prod_name"  >
+     <a href="/products/category">add category</a><br/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          price :
+        </td>
+
+        <td>
+
+          <input type="text" name="price"></td>
+<tr>
+        <td> img :</td> 
+        <td>   <input type="file" name ='avatar'></td>
+
+          </tr>
+   
+   <tr>
+     <td>
+<select name='category'>
+  <%categories.forEach(function(category){%>
+<td>  <option value="<%= category._id %>"><%= category.cat_name %></option></td>
+  <%})%>
+  </select></td>
+</tr> 
+<tr>
+  <td>
+    <input type="submit" value="save">
+  </td>
+  </tr>
+</table>
+   </form>
+  
+</div>
+</div>
+   <%include ../layout/footer.ejs%>
+
+  

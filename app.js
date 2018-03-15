@@ -1,19 +1,18 @@
 
 var express=require('express');
 var server=express();
-var authRoutes=require('./controllers/auth');
-var postRoutes=require('./controllers/products');
-var userRoutes=require('./controllers/users');
-
 var session=require('express-session');
 var flash =require('connect-flash');
 var mongoose=require('mongoose');
-require('./models/products');
 require('./models/orders');
 require('./models/users');
 require('./models/categories');
+require('./models/products');
 require('./models/order_prod');
-
+var authRoutes=require('./controllers/auth');
+var postRoutes=require('./controllers/products');
+var userRoutes=require('./controllers/users');
+var ordersRoutes=require('./controllers/orders');
 mongoose.connect('mongodb://localhost:27017/cafee');
 
 server.use(express.static('public'));
@@ -42,6 +41,7 @@ server.use(function(req,resp,next){
 })
 server.use('/products',postRoutes);
 server.use('/users',userRoutes);
+server.use('/orders',ordersRoutes);
 
 
  server.set('view engine','ejs');
