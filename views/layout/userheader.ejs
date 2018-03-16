@@ -2,7 +2,6 @@
 <head>
 <title></title>
 </head>
-
 <style>
  *{ padding:0; margin:0; outline:0;}
 body {
@@ -87,18 +86,35 @@ h1{
 }
 </style>
 <body>
+
+
+
+<div id="content">
+                <div id="shell">
+                        <img src="../img/logo.png" width="150px" height="50px;">
+<div id="header">
+ <h1 style="color:#563609">user page</h1>
+ <div class="right">
+
+ <p class="small-nav"> <a href="/auth/logout"><span>logout</span></a></a></p>
+                                </div>
+                        </div>
+
+
         <h5>
-                welcome <%=username%>
+                <!-- welcome <%=username%> -->
             </h5>
+            <div id="navigation">
             <ul>
-       <li> <a href="/auth/logout">logout</a></li>
-       <li> <a href="/products/orderpage">menu</a></li>
-       <li> <a href="/products/add">add products</a></li>
-       <li> <a href="/products/list">list products</a></li>
-       <li> <a href="/users/add">add user </a></li>
-       <li> <a href="/users/list">list users</a></li>
-       <li> <a href="/orders/add">add order </a></li>
-       <li> <a href="/orders/list">list orders</a></li>
+
+       <li> <a href="/products/orderoffline"><span>Menu</span></a></li>
+       <li> <a href="/orders/add"><span>My Order </span></a></li>
+
 
 
 </ul>
+</div>
+</div>
+</div>
+
+</div>

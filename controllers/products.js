@@ -7,7 +7,7 @@ var fs=require('fs');
 var multer=require('multer');
 var mongoose=require('mongoose');
 var uploadMid=multer({
-    dest:"./public/img" 
+    dest:"./public/img"
   })
 var ProductModel=mongoose.model('products');
 var UserModel=mongoose.model('users');
@@ -15,7 +15,7 @@ router.get('/add',function(req,resp){
     mongoose.model('categories').find({},function(err,categories){
         resp.render('products/add',{categories:categories});
     });
-    
+
 });
 
 
@@ -27,14 +27,14 @@ router.get('/list/:page?',function(req,resp){
     {
         if(!err){
          resp.render('products/list',{data:result,msg:req.flash('msg')});
-        
+
         }
         else{
            resp.render(err);
         }
 
     });
-    
+
 });
 
 router.get('/orderpage',function(req,resp){
@@ -47,24 +47,23 @@ router.get('/orderpage',function(req,resp){
             });
         }
     })
-    
+
 });
-
-
 
 router.get('/orderoffline',function(req,resp){
     mongoose.model('products').find({},  function(err,result ){
         if(err){
             console.log(err);
         }else{
+            mongoose.model('users').find({},function(error,user){
             resp.render('products/orderoffline', {
-                data: result
+                data: result,users:user
             });
+        })
         }
     })
-    
-});
 
+});
 
 
 router.get('/search',function(req,resp){
@@ -72,15 +71,33 @@ router.get('/search',function(req,resp){
       .sort({_id:-1})
       .populate ({path:"user",select:"name"})
        .then(function(result,err)
-       {                 
+       {
         if(!err){
                 resp.render('products/list',{data:result,msg:req.flash('msg')});
-          
+
             }
             else{
             resp.render(err);
-            } 
+            }
         });
+});
+
+router.post('/add',uploadMid.single('avatar'),function(req,resp){
+
+   var PostModel=mongoose.model('products');
+   var post=new PostModel({
+     prod_name:req.body.prod_name,
+     price:req.body.price,
+     img:req.file.filename,
+
+   });
+   post.save(function(err,doc){
+
+    resp.render('auth/links');
+
+    //resp.json(doc );
+
+   })
 });
 
 
@@ -93,7 +110,7 @@ router.get('/delete/:id',function(req,resp){
         req.flash("msg","Done")
         resp.redirect('/products/list');
     })
-    
+
 
 })
 router.get('/category',function(req,resp){
@@ -101,16 +118,16 @@ router.get('/category',function(req,resp){
    })
  router.post('/category',[bodyParserMid],function(req,resp){
   var Postcat=mongoose.model('categories');
-   var post=new Postcat({ 
+   var post=new Postcat({
     cat_name:req.body.category_name
    });
      post.save(function(err,doc){
         resp.render('auth/links');
-  
+
 
    })
 
-   
+
 });
 
 
@@ -128,7 +145,7 @@ router.post('/edit/:id',[bodyParserMid],function(req,resp){
     "$set":{name:req.body.name,price:req.body.price
     }
     },function(err,doc){
-        
+
         resp.redirect('/products/list');
     });
 })

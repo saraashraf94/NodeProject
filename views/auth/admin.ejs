@@ -2,13 +2,34 @@
 <head>
 <title></title>
 </head>
+<style>
+body{
+  background-image: url("../../img/bg-01.jpg");
+}
+input{
+
+  padding: 3px;
+}
+#loginform{
+
+  margin-left: 35%;
+  border:5px groove rgb(141, 111, 54);
+  width: 300px;
+  margin-top: 4%;
+  padding: 6px;
+
+}
+</style>
 <body>
+    <div id="loginform">
   <%if(msg){%>
     <h1><%=msg%></h1>
   <%}%>
+<h1 style="color:rgb(80, 61, 19)">Login</h1>
   <form method="post" action="">
     <input type ="text" name="username" >
     <input type="password" name="password">
     <input type="submit" value="login">
    </form>
+  </div>
    <%include ../layout/footer.ejs%>

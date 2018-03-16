@@ -10,18 +10,36 @@ var uploadMid=multer({ dest:"./public/img"})
 
 
 
+router.get('/addorder',[bodyParserMid],function(req,resp){
+
+    var UserModel=mongoose.model('users');
+    var post=new UserModel({
+      name:req.body.name,
+      password:req.body.password,
+      email:req.body.email,
+      RoomNo:req.body.RoomNo,
+      EXT:req.body.EXT,
+      img:req.file.originalname
+    });
+    post.save(function(err,doc){
+    
+     resp.render('auth/links');
+ 
+     //resp.json(doc ); 
+ 
+    })
+ });
+ 
 
 router.get('/list',function(req,resp){
     mongoose.model('orders').find({},function(err,order){
+        mongoose.model('users').find({},function(error,user){
+            resp.render('orders/list',{orders:order,users:user});
+        })
        
-
-        mongoose.login("users").find({},function(err,user){
-            resp.render('orders/list',{orders:order},{users:user});
-    })
-
-   
+    });
  });
-});
+
 
 router.get('/add',function(req,resp){
     mongoose.model('orders').find({},function(err,order){

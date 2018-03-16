@@ -3,9 +3,9 @@
 <%include ../layout/header.ejs%>
 <style>
 h1{
- 
+
   margin-left: 15%;
- 
+
 }
 
 #cont{
@@ -36,19 +36,20 @@ h1{
 
           <input type="text" name="price"></td>
 <tr>
-        <td> img :</td> 
+        <td> img :</td>
         <td>   <input type="file" name ='avatar'></td>
 
           </tr>
-   
+
    <tr>
      <td>
-<select name='category'>
-  <%categories.forEach(function(category){%>
-<td>  <option value="<%= category._id %>"><%= category.cat_name %></option></td>
-  <%})%>
-  </select></td>
-</tr> 
+       <select name='category'>
+         <%categories.forEach(function(category){%>
+         <option value="<%= category._id %>"><%= category.cat_name %></option>
+         <%})%>
+         </select>
+</td>
+</tr>
 <tr>
   <td>
     <input type="submit" value="save">
@@ -56,9 +57,7 @@ h1{
   </tr>
 </table>
    </form>
-  
+
 </div>
 </div>
    <%include ../layout/footer.ejs%>
-
-  
